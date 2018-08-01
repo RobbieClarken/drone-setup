@@ -32,19 +32,25 @@ class DroneSetup():
 
 
     def configure(self):
+
+        # If you need to add an action, refer to the API doc:
+        # http://docs.drone.io/api-overview/
+        #
+        # For example:
+        #   API repo update: http://docs.drone.io/api-repo-update/
+        #   PATCH /api/repos/{owner}/{repo}
+
         owner = self.owner
         repo = self.repo
 
-        logger.info(f"Update settings: {self.settings}")
+        logger.info(f"update settings: {self.settings}")
         self.api("PATCH", f"/api/repos/{owner}/{repo}", json=self.settings)
 
-        #Flush all secrets
         for secret in self.api("GET", f"/api/repos/{owner}/{repo}/secrets").json():
             secret = secret['name']
             logger.info(f"delete secret {secret}")
             self.api("DELETE", f"/api/repos/{owner}/{repo}/secrets/{secret}")
 
-        # Inject secrets
         for name, value in self.secrets.items():
             logger.info(f"create secret {name}")
             result = self.api("POST", f"/api/repos/{owner}/{repo}/secrets",

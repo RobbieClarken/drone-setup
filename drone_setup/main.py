@@ -76,4 +76,6 @@ def main(config_file):
 
     dronesetup.configure()
 
-main()
+
+if __name__ == "__main__":
+    main()

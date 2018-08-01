@@ -1,0 +1,10 @@
+owner: ASCI-PLATFORM
+repo: drone-demo
+settings:
+    allow_pr: false
+    allow_push: true
+    allow_deploys: false
+    allow_tags: false
+    trusted: true
+secrets:
+    slack_webhook: https://hooks.slack.com/services/93ikfogio/fkgjkjgr9/39jiomdf09g90rto0sdfkmid

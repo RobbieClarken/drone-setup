@@ -2,7 +2,7 @@
 
 With Drone CI, you define your pipelines in `.drone.yml`.
 
-But to read your pipeline, your repo needs to be enabled and configured on your Drone server.
+But execute your pipeline, your repo needs to be enabled and configured on your Drone server.
 
 Let's define this configuration in `drone.setup.yml`, and version track this config.
 
@@ -45,5 +45,11 @@ sops .drone.setup.yml
 
 Apply this configuration:
 ```
-drone-setup <( sops -d {.drone.setup.yml} )
+drone-setup <( sops -d .drone.setup.yml )
+```
+
+# Some aliases
+```
+alias ds="drone-setup"
+alias dss="drone-setup <(sops -d .drone.setup.yml)"
 ```
